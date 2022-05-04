@@ -117,7 +117,7 @@ func main() {
   print("Type 'help' to show list of commands")
   while (true) {
     if (show == true) {
-      print("What opperation would you like to perform: ")
+      print("What operation would you like to perform: ")
     }
 
     userInputString = readLine()!
@@ -140,7 +140,7 @@ func main() {
       print("Returns -1 if element was not found.")
       print("view_all: prints all elements in the stack.")
 
-      // turns the "What opperation would you like to perform next" on/off
+      // turns the "What operation would you like to perform next" on/off
     } else if (userInputString == "display" || userInputString == "show") {
       if (show == true) {
         show = false
@@ -222,7 +222,7 @@ func main() {
         if (tempInputIntN < 0) {
           print("Please input a positive number")
         } else {
-          if (stack.length < tempInputIntN) {
+          if (stack.length() < Int(tempInputIntN)) {
             print("That number is bigger than the number of elements in the stack")
           } else {
             break
@@ -237,7 +237,7 @@ func main() {
 
       // peeks the top of the stack
     } else if (userInputString == "peek") {
-      print(stack.peek(), "is at the top of the stack")
+      print(stack.peek() ?? ("Stack is empty"), "is at the top of the stack")
 
       // searches ther stack for a given input
       // makes sure the users input is an integer
