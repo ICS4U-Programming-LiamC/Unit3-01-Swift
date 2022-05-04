@@ -55,7 +55,7 @@ public class MyStackInt {
     stack = [Int]()
   }
 
-  public func peek() -> Int {
+  public func peek() -> Int? {
     return stack.last
   }
 
@@ -235,7 +235,7 @@ func main() {
       // peeks the top of the stack
     } else if (userInputString == "peek") {
       if (stack.length() != 0) {
-        print(stack.peek(), "is at the top of the stack")
+        print(stack.peek()!, "is at the top of the stack")
       } else {
         print("Stack is empty")
       }
