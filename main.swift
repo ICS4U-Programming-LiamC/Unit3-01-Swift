@@ -42,23 +42,20 @@ public class MyStackInt {
   }
 
   public func pop() -> Int {
-    return stack.removeLast()  
+    return stack.popLast()!
   }
 
   public func stack_pop(_ n: Int) {
     for _ in 0..<n {
-      stack.removeLast()
-    }
+        _ = stack.popLast()
+      }
   }
 
-  public func stack_empty() {
-    let length = stack.count
-    for _ in 0..<length {
-      stack.removeLast()
-    }
+  public func clear() {
+    stack = [Int]()
   }
 
-  public func peek() -> Int? {
+  public func peek() -> Int {
     return stack.last
   }
 
@@ -73,10 +70,6 @@ public class MyStackInt {
     if (!found) {
       print(element, "did not appear")
     }
-  }
-
-  public func clear() {
-    stack = [Int]()
   }
 
   public func view_all() {
@@ -209,7 +202,11 @@ func main() {
       // pops the top of the stack
       // makes sure the stack isn't empty
     } else if (userInputString == "pop") {
-      print("Popped ", stack.pop(), "from stack")
+      if (stack.length() != 0) {
+        print("Popped ", stack.pop(), "from stack")
+      } else {
+        print("Stack is empty")
+      }
 
       // pops n number of elements from the top
       // makes sure input is an integer and positive/0
@@ -218,9 +215,9 @@ func main() {
       while (true) {
         print("Please input the number of elements to pop")
         tempInputN = readLine()!
-        tempInputIntN = Double(tempInputN) ?? -1.5
-        if (tempInputIntN < 0) {
-          print("Please input a positive number")
+        tempInputIntN = Double(tempInputN) ?? -1
+        if (tempInputIntN < 0 || tempInputIntN.truncatingRemainder(dividingBy: 1) != 0) {
+          print("Please input a positive whole number")
         } else {
           if (stack.length() < Int(tempInputIntN)) {
             print("That number is bigger than the number of elements in the stack")
@@ -237,7 +234,11 @@ func main() {
 
       // peeks the top of the stack
     } else if (userInputString == "peek") {
-      print(stack.peek() ?? ("Stack is empty"), "is at the top of the stack")
+      if (stack.length() != 0) {
+        print(stack.peek(), "is at the top of the stack")
+      } else {
+        print("Stack is empty")
+      }
 
       // searches ther stack for a given input
       // makes sure the users input is an integer
